@@ -1,18 +1,13 @@
 class Main {
     public static void main(String[] args) {
-        Animal a = new Dog();
+        IAnimal a = new Dog();
         a.makeSound();
         a.eat();
         a.respire();
         a.grow();
-        a.fetch();
     }
 }
 
-interface IAnimal {
-    void makeSound();
-    void eat();
-}
 interface ILivingBeing {
     void respire();
     default void grow() {
@@ -20,7 +15,12 @@ interface ILivingBeing {
     }
 }
 
-abstract class Animal implements IAnimal, ILivingBeing {
+interface IAnimal extends ILivingBeing {
+    void makeSound();
+    void eat();
+}
+
+abstract class Animal implements IAnimal {
     public void makeSound() {
         System.out.println("hey");
     }
